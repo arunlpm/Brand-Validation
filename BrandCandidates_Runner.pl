@@ -35,6 +35,7 @@ my $xls = Spreadsheet::ParseExcel::Simple->read('Report.xls');
 
      while ($sheet->has_data) {
          my @data = $sheet->next_row;
+         last if $data[0] eq "";
          push(@in_brand,$data[0]);push(@in_category,$data[1]);push(@in_source,$data[2]);push(@in_cosmos,$data[3]);
 
      }

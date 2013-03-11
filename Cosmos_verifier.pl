@@ -9,7 +9,7 @@ my $progress = Term::ProgressBar->new({count => 100});
 
 
 my(@brand,@aliases,@category,@twitter,@facebook,@topic,@in_brand,@in_category,@b_id);
-my $xls = Spreadsheet::ParseExcel::Simple->read('test.xls');
+my $xls = Spreadsheet::ParseExcel::Simple->read('cosmos_brands.xls');
   foreach my $sheet ($xls->sheets) {
 
      while ($sheet->has_data) {
@@ -22,7 +22,9 @@ my $xls = Spreadsheet::ParseExcel::Simple->read('Report.xls');
   foreach my $sheet ($xls->sheets) {
 
      while ($sheet->has_data) {
+
          my @data = $sheet->next_row;
+         last if $data[0] eq "";
          push(@in_brand,$data[0]);push(@in_category,$data[1]);
 
      }
@@ -35,6 +37,7 @@ my $format   = $template->{Worksheet}[$sheet]
                             ->{FormatNo};
 
 my $lns=scalar(@in_brand);
+print $lns,"\n";
 my $row=1;
 for(my $j=1;$j<=$#in_brand;$j++){
 
